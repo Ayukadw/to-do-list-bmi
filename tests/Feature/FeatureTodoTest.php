@@ -3,12 +3,14 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class FeatureTodoTest extends TestCase
 {
+    use WithoutMiddleware;
     public function testStoreDataActivity()
     {
         // 1. Cek url yang diakses

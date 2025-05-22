@@ -3,9 +3,11 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class BmiCalculationTest extends TestCase
 {
+    use WithoutMiddleware;
     /**
     * @dataProvider bmiInputProvider
     */ 
