@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\BmiHelper;
 use Illuminate\Http\Request;
 
 class BmiController extends Controller
@@ -19,19 +20,12 @@ class BmiController extends Controller
         ]);
 
         $weight = $request->weight;
-        $height = $request->height / 100; //konversi cm ke m
+        $height = $request->height;
 
-        $bmi = $weight / ($height * $height);
-        $category = $this->getBmiCategory($bmi);
+        // Gunakan helper untuk hitung BMI dan kategorinya
+        $bmi = BmiHelper::calculateBmi($weight, $height);
+        $category = BmiHelper::getCategory($bmi);
 
         return view('bmi.result', compact('bmi', 'category'));
-    }
-
-    private function getBmiCategory($bmi)
-    {
-        if ($bmi < 18.5) return 'Kurus';
-        if ($bmi < 24.9) return 'Normal';
-        if ($bmi < 29.9) return 'Gemuk';
-        return 'Obesitas';
     }
 }
